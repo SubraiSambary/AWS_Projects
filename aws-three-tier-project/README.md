@@ -1,16 +1,25 @@
-# Project Overview
+## Project Overview
 
-- Purpose of the project
+The purpose of this project is to demonstrate how to design and deploy a simple three-tier application architecture on AWS while also showcasing automation using serverless services. The project helps learners:
+- Understand core AWS services such as VPC, EC2, S3, CloudFront, RDS, DynamoDB, IAM, and Route 53.
+- Learn how to host and serve a static website with HTML and connect it to a backend (PHP page on EC2).
+- Explore AWS automation by using Lambda and EventBridge to automatically start an EC2 instance on a schedule.
+- Practice implementing networking, security, and monitoring best practices as per AWS Solutions Architect Associate-level knowledge.
 
-- AWS services used (EC2, RDS, S3, CloudFront, Route 53, Lambda, VPC, etc.)
+This project acts as a hands-on learning guide for beginners who want to build AWS projects from scratch, without CloudFormation or automation scripts, focusing entirely on manual configuration to strengthen their fundamentals.
 
-- Logical architecture diagram placeholder
+
 
 ## Learning Objectives
+By the end of this project, learners will be able to not only deploy resources but also appreciate the architectural decisions behind them:
+- Networking & Security → How to design a VPC with public/private subnets, Internet Gateway, NAT Gateway, and Security Groups that balance accessibility with security.
+- Compute & Storage → Best practices in deploying EC2 with EBS/EFS for persistence, and how to differentiate their use cases.
+- Application Hosting → Hosting a static HTML front-end while serving dynamic content from a PHP-based backend on EC2, connected securely to RDS MySQL for relational data and DynamoDB for NoSQL use cases.
+- Automation & Scalability → Leveraging Auto Scaling with ELB for high availability and using Lambda + EventBridge to automate scheduled EC2 operations.
+- DNS & Global Reach → Configuring a custom domain in Route 53 and integrating with CloudFront for global content delivery and low-latency user experience.
+- Monitoring & Governance → Setting up CloudWatch for observability, IAM for secure access management, and following AWS Well-Architected Framework principles.
 
-- What a learner will understand after completing this project
-
-  - e.g., How to set up VPC/subnets, deploy EC2 with Auto Scaling, configure RDS, host a static site on S3 + CloudFront, etc.
+This project not only teaches “how to build” but also why these design choices matter — preparing learners to think like AWS Solution Architects.
 
 ## Prerequisites
 
@@ -19,24 +28,40 @@
 - Optional: AWS CLI installed and configured
 
 ---
-
-# Step-by-Step Deployment Guide
+---
+## Step-by-Step Deployment Guide
 
 ### 1. VPC & Networking
 - Create a new VPC (CIDR: 10.0.0.0/16)
 - Create public and private subnets
-- Attach Internet Gateway (IGW)
+  - 1 public and 2 private subnets. Distribute them across Availability Zones [AZ]
+- Create & Attach Internet Gateway (IGW)
 - Create NAT Gateway for private subnet access
 - Configure route tables
+  - Create public route table and make it to public subnet
+  - Create private route table and map it to private subnets
 
 ### 2. Security
 - Create Security Groups for EC2, RDS, ALB, Lambda
 - Create IAM Roles & Policies with least-privilege
 
 ### 3. Compute Layer
-- Launch EC2 instances in private subnets
+- Launch EC2 instances in public & private subnets
 - Mount EFS and configure EBS as needed
-- Install web server (Apache/Nginx) to serve HTML
+- Install web server (Apache), php, php-mysqli to serve HTML on EC2 in public subnet\
+  Commands:
+  ```
+  sudo dnf update -y
+  ```
+  ```
+  sudo dnf install -y httpd php php-mysqli
+  ```
+  ```
+  sudo systemctl start httpd
+  ```
+  ```
+  sudo systemctl enable httpd
+  ```
 
 ### 4. Load Balancing & Scaling
 - Create Application Load Balancer in public subnets
@@ -45,7 +70,8 @@
 - Attach EC2 instances to target group
 
 ### 5. Data Layer
-- Create RDS (MySQL) instance in private subnet
+- Create RDS (MySQL) instance in private subnet\
+  + Detailed steps provided [https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Tutorials.WebServerDB.CreateDBInstance.html]
 - Create DynamoDB table
 - Connect application layer to databases
 
@@ -96,8 +122,8 @@
 ├── app/
 │   ├── web/                  <-- Front-end HTML/CSS/JS files
 │   │   ├── index.html
-│   │   ├── style.css
-│   │   └── script.js
+│   │   ├── SamplePage.php
+│   │   └── dbinfo.inc
 │   └── worker/               <-- Lambda code or other scripts
 │       └── lambda_handler.js
 ├── scripts/

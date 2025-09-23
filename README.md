@@ -1,5 +1,4 @@
-
-Repository Structure:
+# Repository Structure:
 
 aws-three-tier-project/
 ├── README.md                 <-- Main project overview & quick start
@@ -17,3 +16,4 @@ aws-three-tier-project/
 ├── scripts/
 │   └── deploy.sh             <-- Optional helper script for deployment
 └── examples/                 <-- Screenshots or config snippets for reference
+

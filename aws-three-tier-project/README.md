@@ -62,6 +62,7 @@ This project not only teaches “how to build” but also why these design choic
   ```
   sudo systemctl enable httpd
   ```
+  Detailed steps provided [https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Tutorials.WebServerDB.CreateWebServer.html]
 
 ### 4. Load Balancing & Scaling
 - Create Application Load Balancer in public subnets

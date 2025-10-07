@@ -30,8 +30,6 @@ The purpose of this project is to demonstrate how to design and deploy a simple 
   Object storage for storing and retrieving any amount of data, commonly used for backups, static content, and media files.
 - ### IAM
   Controls access to AWS services and resources securely using users, roles, and policies.
-- ### DYNAMODB
-  Fully managed NoSQL database service offering fast and predictable performance with seamless scalability.
 - ### LAMBDA
   Serverless compute service that runs code in response to events without provisioning or managing servers.
 - ### CLOUDFRONT

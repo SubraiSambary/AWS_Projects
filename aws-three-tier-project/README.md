@@ -7,7 +7,7 @@ The purpose of this project is to demonstrate how to design and deploy a simple 
 - Practice implementing networking, security, and monitoring best practices as per AWS Solutions Architect Associate-level knowledge.
 
 # Architecture
-
+![architecture](https://github.com/SubraiSambary/AWS_Projects/blob/main/aws-three-tier-project/docs/three-tier-architecture.png)
 
 # Components 
 - ### VPC (Virtual Private Cloud)

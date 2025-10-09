@@ -58,8 +58,9 @@ The purpose of this project is to demonstrate how to design and deploy a simple 
 │   │   ├── SamplePage.php
 │   │   └── dbinfo.inc
 │   └── worker/               <-- Lambda code or other scripts
-│       └── lambda_handler.js
 ├── scripts/
-│   └── deploy.sh             <-- Optional helper script for deployment
+│   └── startEC2_Lambda.py    <-- Lambda code to change ASG desired capacity to 2
+│   └── stopEC2_Lambda.py     <-- Lambda code to change ASG desired capacity to 0
+│   └── IAMRolePolicy_JSON    <-- JSON Policy for the role to be attached to lambda
 └── examples/                 <-- Screenshots or config snippets for reference
 ```

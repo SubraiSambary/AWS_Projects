@@ -18,6 +18,7 @@ The purpose of this project is to demonstrate how to design and deploy a simple 
   Distributes incoming traffic across multiple EC2 instances to ensure high availability and fault tolerance.
 - ### AUTO SCALING
   Automatically adjusts the number of EC2 instances based on traffic or performance metrics to maintain application availability and optimize costs.
+  By defalut the desired instances would be set to 0. This scaling would be then controlled via EventBridge schedules to start and stop the EC2 instances.
 - ### RDS (MYSQL)
   Managed relational database service that simplifies setup, operation, and scaling of MySQL databases with automated backups and patching.
 - ### DOMAIN MAPPING
@@ -28,14 +29,19 @@ The purpose of this project is to demonstrate how to design and deploy a simple 
   Scalable, shared file storage for EC2 instances, ideal for applications requiring distributed access to files.
 - ### S3
   Object storage for storing and retrieving any amount of data, commonly used for backups, static content, and media files.
+  S3 mounting is not officially supported by AWS. However, it can be used to store files, images which would be displayed on the website.
+  Note: Mounting can also be tried if interested.
 - ### IAM
   Controls access to AWS services and resources securely using users, roles, and policies.
+  IAM roles and policies need to be attached to components such as Lambda, EC2 to enable them to connect with other required AWS components such as ASG and S3.
 - ### LAMBDA
   Serverless compute service that runs code in response to events without provisioning or managing servers.
+  Start and Stop EC2 instance python scripts are configured in 2 different lambda functions. Each function is called based on 2 seperate schedules in EventBridge.
 - ### CLOUDFRONT
   Content Delivery Network (CDN) that caches and delivers content globally with low latency and high transfer speeds.
-- ### CLOUDWATCH
-  Monitoring and observability service for AWS resources and applications, providing metrics, logs, and alerts.
+- ### EVENTBRIDGE
+  A serverless service that uses events to connect application components together, making it easier for developers to build scalable event-driven applications.
+  2 Schedules need to be configured, one which runs at a specified time with cron to start EC2 instances and one which runs at a specified time with cron to stop EC2 instances.
 
 
 ## Sample Front-End (HTML Application)

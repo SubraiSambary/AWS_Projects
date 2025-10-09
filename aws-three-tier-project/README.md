@@ -56,8 +56,7 @@ The purpose of this project is to demonstrate how to design and deploy a simple 
 ├── README.md                 <-- Main project overview & quick start
 ├── docs/
 │   ├── architecture.png      <-- Architecture diagram
-│   ├── network-diagram.png   <-- Optional detailed VPC/subnet diagram
-│   └── GUIDE-TO-IMPLEMENT.md   <-- Step by Step Guide
+│   └── network-diagram.png   <-- Optional detailed VPC/subnet diagram
 ├── app/
 │   ├── web/                  <-- Front-end HTML/CSS/JS files
 │   │   ├── index.html
